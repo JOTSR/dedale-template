@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags: [v*]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    env:
+      GH_ACTIONS: true
+      DENO_BUILD_MODE: release
+      V8_BINARY: true
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+      
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            See the [changelog](CHANGELOG.md).

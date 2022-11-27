@@ -1,0 +1,89 @@
+{
+	"$schema": "../template.schema.json",
+	"name": "vscode-mod",
+	"arguments": {
+		"author.firstname": {
+			"type": "string",
+			"accepts": "/./g",
+			"default": "$dedale.session.username"
+		},
+		"author.lastname": {
+			"type": "string",
+			"accepts": "/./g",
+			"default": ""
+		},
+		"licence": {
+			"type": "string",
+			"accepts": "/w+/",
+			"default": "MIT",
+			"match": [
+				{
+					"pattern": "/w+/",
+					"then": {
+						"plugins": [
+							{
+								"name": "licence-generator",
+								"arguments": [
+									"$author.firstname",
+									"$author.lastname",
+									"$licence"
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		"description": {
+			"type": "string",
+			"accpets": "/w+/g",
+			"default": "",
+			"match": [
+				{
+					"pattern": "/w+/g",
+					"then": {
+						"plugins": [
+							{
+								"name": "readme-generator",
+								"arguments": [
+									"$dedal.project.name",
+									"$description"
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		"unstable": {
+			"type": "boolean",
+			"accepts": "/./g",
+			"default": true,
+			"match": [
+				{
+					"pattern": true,
+					"then": {
+						"move": [
+							[
+								".vscode/settings.unstable.json",
+								".vscode/settings.json"
+							]
+						],
+						"remove": [".vscode/settings.stable.json"]
+					}
+				},
+				{
+					"default": {
+						"move": [
+							[
+								".vscode/settings.stable.json",
+								".vscode/settings.json"
+							]
+						],
+						"remove": [".vscode/settings.unstable.json"]
+					}
+				}
+			]
+		}
+	}
+}

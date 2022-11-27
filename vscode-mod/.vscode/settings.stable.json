@@ -1,0 +1,9 @@
+{
+	"deno.enable": true,
+	"deno.importMap": "./import-map.json",
+	"deno.codeLens.implementations": true,
+	"deno.codeLens.references": true,
+	"deno.codeLens.referencesAllFunctions": true,
+	"deno.codeLens.test": true,
+	"deno.inlayHints.parameterNames.enabled": "all"
+}

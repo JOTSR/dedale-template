@@ -1,0 +1,18 @@
+{
+	"$schema": "../template.schema.json",
+	"name": "vscode-web",
+	"arguments": {
+		"unstable": {
+			"type": "boolean",
+			"accepts": "/./g"
+		}
+	},
+	"use": {
+		"name": "vscode-web",
+		"arguments": {
+			"unstable": "unstable"
+		},
+		"include": ["*"],
+		"replace": [["deno.json*", "deno.jsonc"]]
+	}
+}
