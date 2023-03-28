@@ -1,7 +1,6 @@
 {
 	"imports": {
-		"/": "./",
-		"./": "./",
+		"@/": "./",
 		"@std/": "https://deno.land/std@0.166.0/",
 		"@x/": "https://deno.land/x/",
 		"@nest/": "https://x.nest.land/",
